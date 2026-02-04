@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,6 +7,8 @@ namespace ToDoList
 {
     public class MainForm : Form
     {
+        private static readonly TraceSource traceSource = new TraceSource("ToDoList");
+        
         private TextBox txtNewTask;
         private Button btnAdd;
         private Button btnRemove;
@@ -15,7 +18,9 @@ namespace ToDoList
 
         public MainForm()
         {
+            traceSource.TraceEvent(TraceEventType.Information, 2000, "MainForm constructor called");
             InitializeComponents();
+            traceSource.TraceEvent(TraceEventType.Information, 2001, "MainForm initialized successfully");
         }
 
         private void InitializeComponents()
@@ -123,22 +128,29 @@ namespace ToDoList
         {
             string task = txtNewTask.Text.Trim();
             
+            traceSource.TraceEvent(TraceEventType.Verbose, 3000, $"BtnAdd_Click: Attempting to add task '{task}'");
+            
             if (string.IsNullOrWhiteSpace(task))
             {
+                traceSource.TraceEvent(TraceEventType.Warning, 3001, "BtnAdd_Click: Empty task rejected");
                 MessageBox.Show("Bitte geben Sie eine Aufgabe ein!", 
                     "Leere Eingabe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             lstTasks.Items.Add("☐ " + task);
+            traceSource.TraceEvent(TraceEventType.Information, 3002, $"Task added successfully: '{task}' (Total tasks: {lstTasks.Items.Count})");
             txtNewTask.Clear();
             txtNewTask.Focus();
         }
 
         private void BtnComplete_Click(object? sender, EventArgs e)
         {
+            traceSource.TraceEvent(TraceEventType.Verbose, 4000, "BtnComplete_Click: Toggle task completion");
+            
             if (lstTasks.SelectedIndex == -1)
             {
+                traceSource.TraceEvent(TraceEventType.Warning, 4001, "BtnComplete_Click: No task selected");
                 MessageBox.Show("Bitte wählen Sie eine Aufgabe aus!", 
                     "Keine Auswahl", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -150,6 +162,7 @@ namespace ToDoList
             if (item.StartsWith("☐ "))
             {
                 lstTasks.Items[index] = "☑ " + item.Substring(2) + " ✓";
+                traceSource.TraceEvent(TraceEventType.Information, 4002, $"Task marked as complete at index {index}: '{item}'");
             }
             else if (item.StartsWith("☑ "))
             {
@@ -160,18 +173,25 @@ namespace ToDoList
                     taskText = taskText.Substring(0, taskText.Length - 2);
                 }
                 lstTasks.Items[index] = "☐ " + taskText;
+                traceSource.TraceEvent(TraceEventType.Information, 4003, $"Task marked as incomplete at index {index}: '{taskText}'");
             }
         }
 
         private void BtnRemove_Click(object? sender, EventArgs e)
         {
+            traceSource.TraceEvent(TraceEventType.Verbose, 5000, "BtnRemove_Click: Attempting to remove task");
+            
             if (lstTasks.SelectedIndex == -1)
             {
+                traceSource.TraceEvent(TraceEventType.Warning, 5001, "BtnRemove_Click: No task selected");
                 MessageBox.Show("Bitte wählen Sie eine Aufgabe aus!", 
                     "Keine Auswahl", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
+            int index = lstTasks.SelectedIndex;
+            string item = lstTasks.Items[index].ToString() ?? "";
+            
             DialogResult result = MessageBox.Show(
                 "Möchten Sie diese Aufgabe wirklich löschen?",
                 "Aufgabe löschen",
@@ -181,6 +201,11 @@ namespace ToDoList
             if (result == DialogResult.Yes)
             {
                 lstTasks.Items.RemoveAt(lstTasks.SelectedIndex);
+                traceSource.TraceEvent(TraceEventType.Information, 5002, $"Task removed at index {index}: '{item}' (Remaining tasks: {lstTasks.Items.Count})");
+            }
+            else
+            {
+                traceSource.TraceEvent(TraceEventType.Verbose, 5003, "BtnRemove_Click: Task removal cancelled by user");
             }
         }
     }
