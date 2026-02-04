@@ -44,6 +44,12 @@ Die Anwendung verfügt über ein integriertes Tracing-System, das alle wichtigen
 - **Konsole**: Trace-Ereignisse werden in der Konsole ausgegeben (wenn von der Konsole gestartet)
 - **Log-Datei**: `%APPDATA%\ToDoList\trace.log`
 
+### Konfiguration
+Die Tracing-Konfiguration kann optional über die `App.config` Datei angepasst werden:
+- Trace-Level ändern (Off, Critical, Error, Warning, Information, Verbose, All)
+- Ausgabeformate anpassen
+- Zusätzliche Listener hinzufügen
+
 ### Protokollierte Ereignisse
 - Anwendungsstart und -beendigung
 - Formular-Initialisierung
