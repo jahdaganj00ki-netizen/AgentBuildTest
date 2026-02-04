@@ -46,8 +46,17 @@ namespace ToDoList
                 "trace.log"
             );
             
-            Directory.CreateDirectory(Path.GetDirectoryName(logPath)!);
-            traceSource.Listeners.Add(new TextWriterTraceListener(logPath));
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(logPath)!);
+                traceSource.Listeners.Add(new TextWriterTraceListener(logPath));
+            }
+            catch (Exception ex)
+            {
+                // If file logging fails, continue with console-only logging
+                traceSource.TraceEvent(TraceEventType.Warning, 1010, 
+                    $"Failed to create log file at {logPath}: {ex.Message}. Continuing with console logging only.");
+            }
             
             // Set trace level to all
             traceSource.Switch = new SourceSwitch("ToDoListSwitch", "All");

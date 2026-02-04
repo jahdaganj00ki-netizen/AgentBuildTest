@@ -200,7 +200,7 @@ namespace ToDoList
 
             if (result == DialogResult.Yes)
             {
-                lstTasks.Items.RemoveAt(lstTasks.SelectedIndex);
+                lstTasks.Items.RemoveAt(index);
                 traceSource.TraceEvent(TraceEventType.Information, 5002, $"Task removed at index {index}: '{item}' (Remaining tasks: {lstTasks.Items.Count})");
             }
             else
