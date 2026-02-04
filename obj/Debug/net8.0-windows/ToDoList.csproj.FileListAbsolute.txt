@@ -1,0 +1,14 @@
+C:\Coding\TraycerTest\bin\Debug\net8.0-windows\ToDoList.exe
+C:\Coding\TraycerTest\bin\Debug\net8.0-windows\ToDoList.deps.json
+C:\Coding\TraycerTest\bin\Debug\net8.0-windows\ToDoList.runtimeconfig.json
+C:\Coding\TraycerTest\bin\Debug\net8.0-windows\ToDoList.dll
+C:\Coding\TraycerTest\bin\Debug\net8.0-windows\ToDoList.pdb
+C:\Coding\TraycerTest\obj\Debug\net8.0-windows\ToDoList.GeneratedMSBuildEditorConfig.editorconfig
+C:\Coding\TraycerTest\obj\Debug\net8.0-windows\ToDoList.AssemblyInfoInputs.cache
+C:\Coding\TraycerTest\obj\Debug\net8.0-windows\ToDoList.AssemblyInfo.cs
+C:\Coding\TraycerTest\obj\Debug\net8.0-windows\ToDoList.csproj.CoreCompileInputs.cache
+C:\Coding\TraycerTest\obj\Debug\net8.0-windows\ToDoList.dll
+C:\Coding\TraycerTest\obj\Debug\net8.0-windows\refint\ToDoList.dll
+C:\Coding\TraycerTest\obj\Debug\net8.0-windows\ToDoList.pdb
+C:\Coding\TraycerTest\obj\Debug\net8.0-windows\ToDoList.genruntimeconfig.cache
+C:\Coding\TraycerTest\obj\Debug\net8.0-windows\ref\ToDoList.dll
