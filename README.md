@@ -9,6 +9,7 @@ Eine einfache ToDo-Listen-Anwendung für Windows, entwickelt mit C# und Windows 
 - ✅ Aufgaben löschen
 - ✅ Moderne Benutzeroberfläche
 - ✅ Tastaturunterstützung (Enter zum Hinzufügen)
+- ✅ **Integriertes Tracing und Logging**
 
 ## Voraussetzungen
 
@@ -35,8 +36,45 @@ dotnet run
 4. Klicken Sie auf "Als erledigt markieren" um die Aufgabe abzuhaken
 5. Klicken Sie auf "Löschen" um eine Aufgabe zu entfernen
 
+## Tracing und Logging
+
+Die Anwendung verfügt über ein integriertes Tracing-System, das alle wichtigen Ereignisse protokolliert:
+
+### Trace-Ausgabe
+- **Konsole**: Trace-Ereignisse werden in der Konsole ausgegeben (wenn von der Konsole gestartet)
+- **Log-Datei**: `%APPDATA%\ToDoList\trace.log`
+
+### Konfiguration
+Die Tracing-Konfiguration kann optional über die `App.config` Datei angepasst werden:
+- Trace-Level ändern (Off, Critical, Error, Warning, Information, Verbose, All)
+- Ausgabeformate anpassen
+- Zusätzliche Listener hinzufügen
+
+### Protokollierte Ereignisse
+- Anwendungsstart und -beendigung
+- Formular-Initialisierung
+- Benutzerinteraktionen:
+  - Hinzufügen von Aufgaben (mit Validierung)
+  - Markieren von Aufgaben als erledigt/unerledigt
+  - Löschen von Aufgaben (mit Bestätigung)
+- Fehler und Warnungen
+
+### Trace-Level
+Die Anwendung verwendet verschiedene Trace-Level:
+- **Information**: Normale Operationen (Start, Stop, erfolgreiche Aktionen)
+- **Verbose**: Detaillierte Informationen über Benutzeraktionen
+- **Warning**: Validierungsfehler und Benutzerhinweise
+- **Error**: Anwendungsfehler und Ausnahmen
+
+### Log-Datei finden
+Die Log-Datei befindet sich unter:
+```
+Windows: C:\Users\<Username>\AppData\Roaming\ToDoList\trace.log
+```
+
 ## Technologie
 
 - C# 12
 - .NET 8.0
 - Windows Forms
+- System.Diagnostics (Tracing)
